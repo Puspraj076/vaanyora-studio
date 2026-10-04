@@ -1,89 +1,630 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Vaanyora Studio</title>
-
-    <link rel="stylesheet" href="style.css">
+    <title>Vaanyora Studio | Where Creativity Becomes Art</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Playfair Display & Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        serif: ['"Playfair Display"', 'serif'],
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        studio: {
+                            dark: '#0B0B0F',
+                            card: '#161622',
+                            gold: '#D4AF37',
+                            goldLight: '#F3E5AB',
+                            teal: '#0ea5e9',
+                            purple: '#a855f7',
+                            accent: '#ec4899'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0B0B0F;
+            color: #E2E8F0;
+        }
+        h1, h2, h3, h4, .font-serif {
+            font-family: 'Playfair Display', serif;
+        }
+        .gold-gradient-text {
+            background: linear-gradient(135deg, #F3E5AB 0%, #D4AF37 50%, #aa820a 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .artistic-gradient-text {
+            background: linear-gradient(135deg, #0ea5e9 0%, #a855f7 50%, #ec4899 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .glow-effect {
+            box-shadow: 0 0 25px rgba(212, 175, 55, 0.15);
+        }
+        .glass-panel {
+            background: rgba(22, 22, 34, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0B0B0F;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #27273a;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #D4AF37;
+        }
+    </style>
 </head>
+<body class="bg-studio-dark text-slate-100 antialiased selection:bg-studio-gold selection:text-studio-dark">
 
-<body>
+    <header id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 glass-panel border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Brand Logo & Name -->
+            <a href="#" class="flex items-center space-x-3 group">
+                <div class="relative w-12 h-12 rounded-full overflow-hidden border-2 border-studio-gold shadow-lg group-hover:scale-105 transition-transform">
+                    <img src="channels4_profile.jpg" alt="Vaanyora Studio Logo" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/100x100/161622/D4AF37?text=VS'">
+                </div>
+                <div>
+                    <span class="text-xl sm:text-2xl font-serif font-bold tracking-wider gold-gradient-text">VAANYORA</span>
+                    <span class="block text-[10px] tracking-[0.3em] text-studio-goldLight uppercase -mt-1">Studio</span>
+                </div>
+            </a>
 
-    <header>
-        <img src="logo.jpg" alt="Vaanyora Studio Logo">
+            <!-- Desktop Navigation Links -->
+            <nav class="hidden md:flex items-center space-x-8 text-sm font-medium">
+                <a href="#hero" class="text-slate-300 hover:text-studio-gold transition-colors">Home</a>
+                <a href="#categories" class="text-slate-300 hover:text-studio-gold transition-colors">Categories</a>
+                <a href="#gallery" class="text-slate-300 hover:text-studio-gold transition-colors">Art Gallery</a>
+                <a href="#about" class="text-slate-300 hover:text-studio-gold transition-colors">The Studio</a>
+                <a href="#contact" class="px-5 py-2.5 rounded-full border border-studio-gold text-studio-gold hover:bg-studio-gold hover:text-studio-dark transition-all duration-300 shadow-sm">Inquire & Commissions</a>
+            </nav>
 
-        <h1>Vaanyora Studio</h1>
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-btn" class="md:hidden text-slate-300 hover:text-studio-gold p-2 focus:outline-none">
+                <i class="fa-solid fa-bars text-xl"></i>
+            </button>
+        </div>
 
-        <p>Art • Painting • Drawing • Resin Art</p>
+        <!-- Mobile Menu Drawer -->
+        <div id="mobile-menu" class="hidden md:hidden glass-panel border-b border-white/10 px-6 py-6 space-y-4">
+            <a href="#hero" class="block text-slate-300 hover:text-studio-gold font-medium py-1 mobile-link">Home</a>
+            <a href="#categories" class="block text-slate-300 hover:text-studio-gold font-medium py-1 mobile-link">Categories</a>
+            <a href="#gallery" class="block text-slate-300 hover:text-studio-gold font-medium py-1 mobile-link">Art Gallery</a>
+            <a href="#about" class="block text-slate-300 hover:text-studio-gold font-medium py-1 mobile-link">The Studio</a>
+            <a href="#contact" class="block text-center mt-2 px-5 py-3 rounded-xl bg-studio-gold text-studio-dark font-semibold shadow-md mobile-link">Inquire & Commissions</a>
+        </div>
     </header>
 
-    <nav>
-        <a href="#home">Home</a>
-        <a href="#gallery">Gallery</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
-    </nav>
+    <section id="hero" class="relative min-h-screen flex items-center justify-center pt-24 pb-16 overflow-hidden">
+        <!-- Ambient Background Glows -->
+        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-purple-600/10 rounded-full blur-[120px] pointer-events-none"></div>
+        <div class="absolute top-2/3 left-1/4 w-[400px] h-[400px] bg-amber-500/10 rounded-full blur-[100px] pointer-events-none"></div>
 
-    <section id="home" class="hero">
-        <h2>Welcome to Vaanyora Studio</h2>
-
-        <p>
-            A creative space showcasing beautiful paintings,
-            drawings and handmade resin art.
-        </p>
-
-        <a class="button" href="#gallery">
-            Explore Our Art
-        </a>
-    </section>
-
-    <section id="gallery">
-        <h2>Our Collection</h2>
-
-        <div class="gallery">
-
-            <div class="card">
-                <img src="images/painting1.jpg" alt="Painting">
-                <h3>Paintings</h3>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+            <div class="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-studio-card border border-studio-gold/30 mb-8 shadow-inner animate-pulse">
+                <span class="w-2 h-2 rounded-full bg-studio-gold"></span>
+                <span class="text-xs uppercase tracking-widest text-studio-goldLight font-medium">Original Handcrafted Art & Decor</span>
             </div>
 
-            <div class="card">
-                <img src="images/drawing1.jpg" alt="Drawing">
-                <h3>Drawings</h3>
+            <h1 class="text-4xl sm:text-6xl md:text-7xl font-serif font-bold tracking-tight mb-6 max-w-4xl mx-auto leading-tight">
+                Where Creativity <br class="hidden sm:inline"><span class="artistic-gradient-text">Becomes Art</span>
+            </h1>
+
+            <p class="text-lg sm:text-xl text-slate-300 max-w-2xl mx-auto mb-10 font-light leading-relaxed">
+                Welcome to Vaanyora Studio. Explore a breathtaking realm of resin magic, emotive paintings, intricate drawings, and timeless home sculptures crafted with passion.
+            </p>
+
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="#gallery" class="w-full sm:w-auto px-8 py-4 rounded-full bg-gradient-to-r from-studio-gold to-amber-600 text-studio-dark font-bold hover:opacity-95 transition-all shadow-xl hover:shadow-studio-gold/20 flex items-center justify-center space-x-3">
+                    <span>Explore Exhibition</span>
+                    <i class="fa-solid fa-arrow-right text-sm"></i>
+                </a>
+                <a href="#contact" class="w-full sm:w-auto px-8 py-4 rounded-full glass-panel border border-white/20 text-slate-100 hover:border-studio-gold transition-all font-medium flex items-center justify-center space-x-2">
+                    <i class="fa-regular fa-envelope text-studio-gold"></i>
+                    <span>Commission Custom Art</span>
+                </a>
             </div>
 
-            <div class="card">
-                <img src="images/resin1.jpg" alt="Resin Art">
-                <h3>Resin Art</h3>
+            <!-- Featured Logo Showcase Badge -->
+            <div class="mt-20 pt-12 border-t border-white/10 flex flex-col items-center justify-center">
+                <div class="relative w-24 h-24 rounded-full p-1 bg-gradient-to-tr from-studio-gold via-studio-purple to-studio-teal shadow-2xl mb-4">
+                    <img src="channels4_profile.jpg" alt="Vaanyora Studio Logo Emblem" class="w-full h-full rounded-full object-cover">
+                </div>
+                <p class="text-sm tracking-widest text-slate-400 uppercase font-semibold">Resin Art • Paint • Sculpture • Home Decor</p>
             </div>
-
         </div>
     </section>
 
-    <section id="about">
-        <h2>About Vaanyora Studio</h2>
+    <section id="categories" class="py-20 bg-studio-dark/60 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <h2 class="text-3xl sm:text-4xl font-serif font-bold mb-4 gold-gradient-text">Artistic Disciplines</h2>
+                <p class="text-slate-400">Discover the diverse mediums and creative expressions cultivated inside the studio.</p>
+            </div>
 
-        <p>
-            Vaanyora Studio is a creative art studio dedicated to
-            paintings, drawings and handmade resin artwork.
-        </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Category 1 -->
+                <div onclick="filterCategory('Resin Art')" class="group cursor-pointer glass-panel rounded-2xl p-6 hover:border-studio-gold transition-all duration-300 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-cyan-500/10 rounded-full blur-2xl group-hover:bg-cyan-500/20 transition-all"></div>
+                    <div class="w-14 h-14 rounded-xl bg-cyan-500/20 text-cyan-400 flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-water"></i>
+                    </div>
+                    <h3 class="text-xl font-serif font-bold text-white mb-2 group-hover:text-studio-gold transition-colors">Resin Art</h3>
+                    <p class="text-slate-400 text-sm mb-4">Mesmerizing fluid geodes, ocean waves, trays, and crystal-clear glossy decorative pieces.</p>
+                    <span class="inline-flex items-center text-xs font-semibold text-studio-gold uppercase tracking-wider">
+                        <span>View Pieces</span>
+                        <i class="fa-solid fa-chevron-right ml-2 text-[10px]"></i>
+                    </span>
+                </div>
+
+                <!-- Category 2 -->
+                <div onclick="filterCategory('Paintings')" class="group cursor-pointer glass-panel rounded-2xl p-6 hover:border-studio-gold transition-all duration-300 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-purple-500/10 rounded-full blur-2xl group-hover:bg-purple-500/20 transition-all"></div>
+                    <div class="w-14 h-14 rounded-xl bg-purple-500/20 text-purple-400 flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-paintbrush"></i>
+                    </div>
+                    <h3 class="text-xl font-serif font-bold text-white mb-2 group-hover:text-studio-gold transition-colors">Paintings</h3>
+                    <p class="text-slate-400 text-sm mb-4">Expressive acrylics, oil canvases, abstract bursts, and vibrant portrait masterpieces.</p>
+                    <span class="inline-flex items-center text-xs font-semibold text-studio-gold uppercase tracking-wider">
+                        <span>View Pieces</span>
+                        <i class="fa-solid fa-chevron-right ml-2 text-[10px]"></i>
+                    </span>
+                </div>
+
+                <!-- Category 3 -->
+                <div onclick="filterCategory('Drawings')" class="group cursor-pointer glass-panel rounded-2xl p-6 hover:border-studio-gold transition-all duration-300 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-amber-500/10 rounded-full blur-2xl group-hover:bg-amber-500/20 transition-all"></div>
+                    <div class="w-14 h-14 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-pencil"></i>
+                    </div>
+                    <h3 class="text-xl font-serif font-bold text-white mb-2 group-hover:text-studio-gold transition-colors">Drawings</h3>
+                    <p class="text-slate-400 text-sm mb-4">Intricate charcoal sketches, fine line art, graphite studies, and detailed illustrations.</p>
+                    <span class="inline-flex items-center text-xs font-semibold text-studio-gold uppercase tracking-wider">
+                        <span>View Pieces</span>
+                        <i class="fa-solid fa-chevron-right ml-2 text-[10px]"></i>
+                    </span>
+                </div>
+
+                <!-- Category 4 -->
+                <div onclick="filterCategory('Home Decor')" class="group cursor-pointer glass-panel rounded-2xl p-6 hover:border-studio-gold transition-all duration-300 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-pink-500/10 rounded-full blur-2xl group-hover:bg-pink-500/20 transition-all"></div>
+                    <div class="w-14 h-14 rounded-xl bg-pink-500/20 text-pink-400 flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-house-chimney"></i>
+                    </div>
+                    <h3 class="text-xl font-serif font-bold text-white mb-2 group-hover:text-studio-gold transition-colors">Home Decor</h3>
+                    <p class="text-slate-400 text-sm mb-4">Handcrafted sculptures, customized wall clocks, coasters, and luxurious artisan accents.</p>
+                    <span class="inline-flex items-center text-xs font-semibold text-studio-gold uppercase tracking-wider">
+                        <span>View Pieces</span>
+                        <i class="fa-solid fa-chevron-right ml-2 text-[10px]"></i>
+                    </span>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <section id="contact">
-        <h2>Follow Vaanyora Studio</h2>
+    <section id="gallery" class="py-24 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+                <div>
+                    <h2 class="text-3xl sm:text-4xl font-serif font-bold gold-gradient-text mb-2">Art Gallery & Exhibition</h2>
+                    <p class="text-slate-400">Browse curated creations from Vaanyora Studio. Inquire for availability or commissions.</p>
+                </div>
 
-        <a class="youtube"
-           href="https://youtube.com/@vaanyorastudio"
-           target="_blank">
-            ▶ YouTube • @vaanyorastudio
-        </a>
+                <!-- Category Filter Buttons -->
+                <div class="flex flex-wrap gap-2 mt-6 md:mt-0">
+                    <button onclick="filterCategory('All')" id="btn-All" class="filter-btn px-4 py-2 rounded-full text-xs font-semibold bg-studio-gold text-studio-dark transition-all">All Art</button>
+                    <button onclick="filterCategory('Resin Art')" id="btn-Resin Art" class="filter-btn px-4 py-2 rounded-full text-xs font-semibold glass-panel text-slate-300 hover:border-studio-gold transition-all">Resin Art</button>
+                    <button onclick="filterCategory('Paintings')" id="btn-Paintings" class="filter-btn px-4 py-2 rounded-full text-xs font-semibold glass-panel text-slate-300 hover:border-studio-gold transition-all">Paintings</button>
+                    <button onclick="filterCategory('Drawings')" id="btn-Drawings" class="filter-btn px-4 py-2 rounded-full text-xs font-semibold glass-panel text-slate-300 hover:border-studio-gold transition-all">Drawings</button>
+                    <button onclick="filterCategory('Home Decor')" id="btn-Home Decor" class="filter-btn px-4 py-2 rounded-full text-xs font-semibold glass-panel text-slate-300 hover:border-studio-gold transition-all">Home Decor</button>
+                </div>
+            </div>
+
+            <!-- Gallery Grid -->
+            <div id="gallery-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Dynamically populated or rendered via JS -->
+            </div>
+        </div>
     </section>
 
-    <footer>
-        © 2026 Vaanyora Studio
+    <section id="about" class="py-24 bg-studio-card/40 border-y border-white/5 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="relative">
+                    <div class="absolute -inset-4 bg-gradient-to-r from-studio-gold/20 to-studio-purple/20 rounded-3xl blur-xl"></div>
+                    <div class="relative rounded-2xl overflow-hidden border border-studio-gold/30 glass-panel p-3">
+                        <img src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&q=80&w=800" alt="Artist working in studio" class="w-full h-[400px] object-cover rounded-xl">
+                        <div class="absolute bottom-6 left-6 right-6 p-6 glass-panel rounded-xl backdrop-blur-md">
+                            <h4 class="font-serif font-bold text-lg text-studio-gold">The Creative Sanctuary</h4>
+                            <p class="text-xs text-slate-300 mt-1">Every stroke of paint and pour of resin is infused with heartfelt inspiration.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="space-y-6">
+                    <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-studio-gold/10 border border-studio-gold/30 text-studio-gold text-xs font-medium uppercase tracking-wider">
+                        <span>About Vaanyora Studio</span>
+                    </div>
+                    <h2 class="text-3xl sm:text-4xl font-serif font-bold gold-gradient-text">Where Every Detail Tells a Story</h2>
+                    <p class="text-slate-300 font-light leading-relaxed">
+                        Vaanyora Studio was born out of a profound love for the transcendent beauty of colors, textures, and form. We specialize in transforming raw materials into soulful pieces of art that evoke emotion, serenity, and wonder in any living space.
+                    </p>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Whether it is the glossy, fluid depths of resin geodes capturing oceanic majesty, evocative canvas paintings, intricate pencil sketches, or bespoke home decor, each creation is meticulously handcrafted as a unique piece of storytelling.
+                    </p>
+
+                    <div class="grid grid-cols-3 gap-4 pt-4 border-t border-white/10">
+                        <div>
+                            <span class="block text-2xl font-serif font-bold text-studio-gold">100%</span>
+                            <span class="text-xs text-slate-400">Handcrafted</span>
+                        </div>
+                        <div>
+                            <span class="block text-2xl font-serif font-bold text-studio-purple">Custom</span>
+                            <span class="text-xs text-slate-400">Commissions</span>
+                        </div>
+                        <div>
+                            <span class="block text-2xl font-serif font-bold text-cyan-400">Unique</span>
+                            <span class="text-xs text-slate-400">Original Pieces</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-24 relative">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl sm:text-4xl font-serif font-bold gold-gradient-text mb-4">Inquire About Art & Commissions</h2>
+                <p class="text-slate-400 max-w-lg mx-auto">
+                    Interested in an artwork or looking to commission a custom piece tailored to your vision? Send us a message directly. No online checkout required.
+                </p>
+            </div>
+
+            <div class="glass-panel rounded-3xl p-8 sm:p-12 relative shadow-2xl border border-studio-gold/20">
+                <form id="inquiry-form" onsubmit="handleInquiry(event)" class="space-y-6">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-xs uppercase tracking-wider text-studio-goldLight font-medium mb-2">Your Name</label>
+                            <input type="text" id="name" required class="w-full bg-studio-dark/80 border border-white/10 rounded-xl px-4 py-3 text-slate-100 focus:outline-none focus:border-studio-gold transition-colors placeholder:text-slate-600" placeholder="Aria Vance">
+                        </div>
+                        <div>
+                            <label class="block text-xs uppercase tracking-wider text-studio-goldLight font-medium mb-2">Email Address</label>
+                            <input type="email" id="email" required class="w-full bg-studio-dark/80 border border-white/10 rounded-xl px-4 py-3 text-slate-100 focus:outline-none focus:border-studio-gold transition-colors placeholder:text-slate-600" placeholder="aria@example.com">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-xs uppercase tracking-wider text-studio-goldLight font-medium mb-2">Inquiry Type</label>
+                            <select id="inquiry-type" class="w-full bg-studio-dark/80 border border-white/10 rounded-xl px-4 py-3 text-slate-100 focus:outline-none focus:border-studio-gold transition-colors">
+                                <option value="General Inquiry">General Exhibition Inquiry</option>
+                                <option value="Artwork Availability">Artwork Availability Inquiry</option>
+                                <option value="Custom Commission">Custom Commission Request</option>
+                                <option value="Collaboration">Studio Collaboration</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs uppercase tracking-wider text-studio-goldLight font-medium mb-2">Reference Artwork (Optional)</label>
+                            <input type="text" id="artwork-ref" class="w-full bg-studio-dark/80 border border-white/10 rounded-xl px-4 py-3 text-slate-100 focus:outline-none focus:border-studio-gold transition-colors placeholder:text-slate-600" placeholder="e.g. Celestial Resin Geode">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs uppercase tracking-wider text-studio-goldLight font-medium mb-2">Your Message / Vision</label>
+                        <textarea id="message" rows="4" required class="w-full bg-studio-dark/80 border border-white/10 rounded-xl px-4 py-3 text-slate-100 focus:outline-none focus:border-studio-gold transition-colors placeholder:text-slate-600" placeholder="Tell us about the piece you love or the custom artwork you envision..."></textarea>
+                    </div>
+
+                    <div class="text-center pt-2">
+                        <button type="submit" class="w-full sm:w-auto px-10 py-4 rounded-full bg-gradient-to-r from-studio-gold to-amber-600 text-studio-dark font-bold hover:opacity-95 transition-all shadow-xl flex items-center justify-center space-x-2 mx-auto">
+                            <i class="fa-solid fa-paper-plane"></i>
+                            <span>Send Inquiry to Studio</span>
+                        </button>
+                    </div>
+                </form>
+
+                <!-- Success Message Modal / Box inside card -->
+                <div id="success-box" class="hidden mt-6 p-4 rounded-xl bg-studio-gold/10 border border-studio-gold text-center text-studio-goldLight animate-fade-in">
+                    <i class="fa-solid fa-circle-check text-2xl mb-2 block"></i>
+                    <h4 class="font-bold text-lg mb-1">Inquiry Received Successfully!</h4>
+                    <p class="text-sm text-slate-300">Thank you for reaching out to Vaanyora Studio. We will review your inquiry and get in touch with you shortly.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="art-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md hidden">
+        <div class="glass-panel max-w-3xl w-full rounded-3xl overflow-hidden border border-studio-gold/30 relative animate-scale-up shadow-2xl">
+            <button onclick="closeModal()" class="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-studio-dark/80 text-slate-300 hover:text-studio-gold flex items-center justify-center transition-colors">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+            <div class="grid grid-cols-1 md:grid-cols-2">
+                <div class="h-72 md:h-full bg-studio-dark relative">
+                    <img id="modal-img" src="" alt="Artwork Detail" class="w-full h-full object-cover">
+                </div>
+                <div class="p-8 flex flex-col justify-between">
+                    <div>
+                        <span id="modal-category" class="text-xs uppercase tracking-widest text-studio-gold font-semibold mb-2 block">Category</span>
+                        <h3 id="modal-title" class="text-2xl font-serif font-bold text-white mb-4">Artwork Title</h3>
+                        <p id="modal-desc" class="text-slate-300 text-sm mb-6 leading-relaxed">Detailed description of the artwork creation process, inspiration, and material specs.</p>
+                        <div class="space-y-2 mb-6 text-xs text-slate-400">
+                            <p><strong class="text-slate-200">Medium:</strong> <span id="modal-medium">Mixed Media</span></p>
+                            <p><strong class="text-slate-200">Dimensions:</strong> <span id="modal-dims">24" x 36"</span></p>
+                            <p><strong class="text-slate-200">Availability:</strong> <span class="text-studio-gold font-medium">Available for Inquiries</span></p>
+                        </div>
+                    </div>
+                    <div>
+                        <button onclick="inquireFromModal()" class="w-full py-3 rounded-full bg-studio-gold text-studio-dark font-bold hover:bg-studio-goldLight transition-all flex items-center justify-center space-x-2">
+                            <i class="fa-regular fa-comment-dots"></i>
+                            <span>Inquire About This Piece</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-studio-dark border-t border-white/10 pt-16 pb-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+                <div class="space-y-4 md:col-span-2">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 rounded-full overflow-hidden border border-studio-gold">
+                            <img src="channels4_profile.jpg" alt="Logo" class="w-full h-full object-cover">
+                        </div>
+                        <span class="text-xl font-serif font-bold tracking-wider gold-gradient-text">VAANYORA STUDIO</span>
+                    </div>
+                    <p class="text-slate-400 text-sm max-w-md">
+                        Where creativity becomes art. Dedicated to bringing enchanting resin creations, soul-stirring paintings, detailed sketches, and bespoke decor to art lovers worldwide.
+                    </p>
+                    <div class="pt-2">
+                        <p class="text-xs uppercase tracking-widest text-studio-gold font-semibold">Resin Art • Paint • Sculpture • Home Decor</p>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="font-serif font-bold text-white mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-sm text-slate-400">
+                        <li><a href="#hero" class="hover:text-studio-gold transition-colors">Home</a></li>
+                        <li><a href="#categories" class="hover:text-studio-gold transition-colors">Categories</a></li>
+                        <li><a href="#gallery" class="hover:text-studio-gold transition-colors">Art Gallery</a></li>
+                        <li><a href="#about" class="hover:text-studio-gold transition-colors">The Studio</a></li>
+                        <li><a href="#contact" class="hover:text-studio-gold transition-colors">Commissions</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-serif font-bold text-white mb-4">Connect & Follow</h4>
+                    <p class="text-sm text-slate-400 mb-4">Follow the artistic journey and daily studio creations.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 rounded-full glass-panel border border-white/10 flex items-center justify-center text-slate-300 hover:text-studio-gold hover:border-studio-gold transition-colors"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full glass-panel border border-white/10 flex items-center justify-center text-slate-300 hover:text-studio-gold hover:border-studio-gold transition-colors"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full glass-panel border border-white/10 flex items-center justify-center text-slate-300 hover:text-studio-gold hover:border-studio-gold transition-colors"><i class="fa-brands fa-pinterest-p"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full glass-panel border border-white/10 flex items-center justify-center text-slate-300 hover:text-studio-gold hover:border-studio-gold transition-colors"><i class="fa-brands fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-t border-white/10 pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500">
+                <p>&copy; 2026 Vaanyora Studio. All rights reserved. Pure art showcase & portfolio.</p>
+                <p class="mt-2 sm:mt-0">Crafted with passion for fine arts.</p>
+            </div>
+        </div>
     </footer>
 
+    <script>
+        // Gallery Artwork Data
+        const artworks = [
+            {
+                id: 1,
+                title: "Ruby Ganesha on Lotus Blossom",
+                category: "Resin Art",
+                image: "input_file_0.png",
+                medium: "Translucent Resin, Gold Leaf Flakes",
+                dimensions: "Handcrafted Miniature Sculpture",
+                description: "A breathtaking translucent deep ruby-pink resin sculpture of Lord Ganesha seated in divine grace upon a detailed lotus flower base, beautifully infused with shimmering gold leaf flakes."
+            },
+            {
+                id: 2,
+                title: "Eternal Embrace Feather Couple",
+                category: "Home Decor",
+                image: "input_file_1.png",
+                medium: "Crystal Resin, Gold Flake Accents",
+                dimensions: "Bespoke Sculptural Accent",
+                description: "An exquisite translucent resin sculpture portraying two loving profiles in a gentle embrace, framed within majestic feather silhouettes and accented with radiant gold flake touches."
+            },
+            {
+                id: 3,
+                title: "Celestial Geode Resin Tray",
+                category: "Resin Art",
+                image: "https://images.unsplash.com/photo-1579783902614-a3fb3927b675?auto=format&fit=crop&q=80&w=800",
+                medium: "Epoxy Resin, Gold Leaf, Real Crystals",
+                dimensions: "16\" x 12\" Oval",
+                description: "A mesmerizing epoxy resin serving tray featuring deep teal swirls, rich purples, and genuine metallic gold leaf accents embedded with natural quartz crystals."
+            },
+            {
+                id: 4,
+                title: "Ethereal Dreamscape",
+                category: "Paintings",
+                image: "https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?auto=format&fit=crop&q=80&w=800",
+                medium: "Acrylic and Gold Pigments on Stretched Canvas",
+                dimensions: "30\" x 40\"",
+                description: "An expressive canvas painting capturing a mystical female silhouette immersed in a vibrant cosmic nebula of gold, teal, and magenta tones."
+            },
+            {
+                id: 5,
+                title: "Graphite Grace Portrait",
+                category: "Drawings",
+                image: "https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&q=80&w=800",
+                medium: "Professional Graphite and Charcoal on Archival Paper",
+                dimensions: "18\" x 24\"",
+                description: "An exquisite high-detail portrait study celebrating delicate facial features, contrasting deep shadows with subtle highlights."
+            },
+            {
+                id: 6,
+                title: "Oceanic Wave Wall Clock",
+                category: "Home Decor",
+                image: "https://images.unsplash.com/photo-1563089145-599997674d42?auto=format&fit=crop&q=80&w=800",
+                medium: "Resin, Wood Base, Metallic Numerals",
+                dimensions: "20\" Diameter",
+                description: "Functional art capturing real multi-layered ocean waves crashing onto a pristine sandy shore with glossy resin polish."
+            }
+        ];
+
+        let currentFilter = 'All';
+        let selectedArtworkTitle = '';
+
+        // Render Gallery
+        function renderGallery(filter = 'All') {
+            const grid = document.getElementById('gallery-grid');
+            grid.innerHTML = '';
+
+            const filtered = filter === 'All' ? artworks : artworks.filter(art => art.category === filter);
+
+            if(filtered.length === 0) {
+                grid.innerHTML = `<div class="col-span-full text-center py-12 text-slate-400">No artwork found in this category.</div>`;
+                return;
+            }
+
+            filtered.forEach(art => {
+                const card = document.createElement('div');
+                card.className = "group glass-panel rounded-2xl overflow-hidden border border-white/10 hover:border-studio-gold transition-all duration-300 flex flex-col shadow-lg";
+                card.innerHTML = `
+                    <div class="relative h-64 overflow-hidden cursor-pointer" onclick="openModal(${art.id})">
+                        <img src="${art.image}" alt="${art.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://placehold.co/600x400/161622/D4AF37?text=Artpiece'">
+                        <div class="absolute inset-0 bg-gradient-to-t from-studio-dark/80 via-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+                            <span class="text-xs uppercase tracking-wider text-studio-gold font-semibold bg-studio-dark/90 px-3 py-1 rounded-full">Click to inspect</span>
+                        </div>
+                        <span class="absolute top-3 right-3 text-[10px] uppercase tracking-wider bg-studio-dark/80 text-studio-gold px-3 py-1 rounded-full border border-studio-gold/30">${art.category}</span>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow justify-between">
+                        <div>
+                            <h3 class="font-serif font-bold text-xl text-white mb-2 group-hover:text-studio-gold transition-colors">${art.title}</h3>
+                            <p class="text-slate-400 text-sm line-clamp-2 mb-4">${art.description}</p>
+                        </div>
+                        <div class="pt-4 border-t border-white/10 flex items-center justify-between">
+                            <span class="text-xs text-studio-goldLight italic">${art.medium.split(',')[0]}</span>
+                            <button onclick="openModal(${art.id})" class="px-4 py-2 rounded-full border border-studio-gold/50 text-studio-gold text-xs font-semibold hover:bg-studio-gold hover:text-studio-dark transition-all">
+                                View Details & Inquire
+                            </button>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // Filter Category Function
+        function filterCategory(category) {
+            currentFilter = category;
+            
+            // Update button styles
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.className = "filter-btn px-4 py-2 rounded-full text-xs font-semibold glass-panel text-slate-300 hover:border-studio-gold transition-all";
+            });
+            const activeBtn = document.getElementById(`btn-${category}`);
+            if(activeBtn) {
+                activeBtn.className = "filter-btn px-4 py-2 rounded-full text-xs font-semibold bg-studio-gold text-studio-dark transition-all shadow-md";
+            }
+
+            renderGallery(category);
+
+            // If triggered from categories cards, scroll to gallery
+            if(category !== 'All') {
+                const gallerySection = document.getElementById('gallery');
+                gallerySection.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        // Modal Functions
+        function openModal(id) {
+            const art = artworks.find(a => a.id === id);
+            if(!art) return;
+
+            selectedArtworkTitle = art.title;
+            document.getElementById('modal-img').src = art.image;
+            document.getElementById('modal-category').innerText = art.category;
+            document.getElementById('modal-title').innerText = art.title;
+            document.getElementById('modal-desc').innerText = art.description;
+            document.getElementById('modal-medium').innerText = art.medium;
+            document.getElementById('modal-dims').innerText = art.dimensions;
+
+            document.getElementById('art-modal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            document.getElementById('art-modal').classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        function inquireFromModal() {
+            closeModal();
+            document.getElementById('artwork-ref').value = selectedArtworkTitle;
+            document.getElementById('inquiry-type').value = 'Artwork Availability';
+            document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Inquiry Form Handler
+        function handleInquiry(e) {
+            e.preventDefault();
+            const successBox = document.getElementById('success-box');
+            successBox.classList.remove('hidden');
+            document.getElementById('inquiry-form').reset();
+            setTimeout(() => {
+                successBox.scrollIntoView({ behavior: 'smooth' });
+            }, 100);
+        }
+
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        document.querySelectorAll('.mobile-link').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 40) {
+                navbar.classList.add('bg-studio-dark/95', 'shadow-xl');
+            } else {
+                navbar.classList.remove('bg-studio-dark/95', 'shadow-xl');
+            }
+        });
+
+        // Initialize Gallery on Load
+        window.onload = function() {
+            renderGallery('All');
+        };
+    </script>
 </body>
 </html>
